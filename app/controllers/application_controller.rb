@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_bookmark(id)
-    current_user.user_videos.find_by(video_id: id)
+    current_user.bookmarks.find_by(video_id: id)
   end
 
   def tutorial_name(id)
