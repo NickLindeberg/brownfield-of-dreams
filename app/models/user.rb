@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  has_many :user_videos
-  has_many :videos, through: :user_videos
+  has_many :bookmarks
+  has_many :tutorials, through: :bookmarks
+  has_many :videos, through: :bookmarks  
 
   validates :email, uniqueness: true, presence: true
   validates :password, presence: true, if: :password
