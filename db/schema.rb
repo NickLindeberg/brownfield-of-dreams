@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_010509) do
+ActiveRecord::Schema.define(version: 2019_02_02_230127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "tutorial_id"
+    t.bigint "video_id"
+    t.index ["tutorial_id"], name: "index_bookmarks_on_tutorial_id"
+    t.index ["video_id"], name: "index_bookmarks_on_video_id"
+  end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
@@ -81,6 +88,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_010509) do
     t.index ["tutorial_id"], name: "index_videos_on_tutorial_id"
   end
 
+  add_foreign_key "bookmarks", "tutorials"
+  add_foreign_key "bookmarks", "videos"
   add_foreign_key "user_videos", "users"
   add_foreign_key "user_videos", "videos"
 end
