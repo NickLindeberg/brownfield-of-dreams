@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'A registered user' do
   it 'can add videos to their bookmarks' do
-    tutorial= create(:tutorial, title: "How to Tie Your Shoes")
+    tutorial = create(:tutorial, title: "How to Tie Your Shoes")
     video = create(:video, title: "The Bunny Ears Technique", tutorial: tutorial)
     user = create(:user)
 
@@ -12,7 +12,7 @@ describe 'A registered user' do
 
     expect {
       click_on 'Bookmark'
-    }.to change { UserVideo.count }.by(1)
+    }.to change { Bookmark.count }.by(1)
 
     expect(page).to have_content("Bookmark added to your dashboard")
   end

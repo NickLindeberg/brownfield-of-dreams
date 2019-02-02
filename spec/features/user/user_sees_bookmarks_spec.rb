@@ -32,7 +32,7 @@ describe 'Rendering Bookmarked Segments' do
         expect(page).to have_content("Get a Sweater")
       end
     end
-    it 'shows a list of bookmarked segments organized by tutorial' do
+    xit 'shows a list of bookmarked segments organized by tutorial' do
       within '.bookmarks' do
         within "#tutorial-#{@tutorial.id}" do
           expect(page).to have_css("#video-#{@video.id}")
@@ -44,7 +44,7 @@ describe 'Rendering Bookmarked Segments' do
         end
       end
     end
-    it 'shows a list of all bookmarked segments ordered by position' do
+    xit 'shows a list of all bookmarked segments ordered by position' do
       expect(all('.tutorial')[0]).to have_content("How to Tie Your Shoes")
       expect(all('.tutorial')[1]).to have_content("How to Invade Russia")
 
