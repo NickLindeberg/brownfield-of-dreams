@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "personal_project_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => "https://lit-garden-46076.herokuapp.com/"}
+  config.action_mailer.default_url_options = { :host => "http://lit-garden-46076.herokuapp.com/"}
 
 
   # Ignore bad email addresses and do not raise email delivery errors.

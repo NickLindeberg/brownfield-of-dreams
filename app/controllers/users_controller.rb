@@ -19,9 +19,8 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
 
-      server = request.env["HTTP_HOST"]
       user = current_user
-      UserActivateMailer.activate(user, server).deliver_now
+      UserActivateMailer.activate(user).deliver_now
       flash[:notice] = "Logged in as #{user.first_name}"
       redirect_to dashboard_path
     else
