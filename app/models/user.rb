@@ -12,7 +12,7 @@ class User < ApplicationRecord
   def uniq_tutorials
     bookmarks
       .joins(:tutorial)
-      .select("DISTINCT tutorials.title AS tut_tile, tutorials.description AS tut_desc, tutorials.thumbnail AS tut_thumbnail")
+      .select("DISTINCT tutorials.id AS tut_id, tutorials.title AS tut_title, tutorials.description AS tut_desc, tutorials.thumbnail AS tut_thumbnail, bookmarks.id AS bookmark_id")
   end
 
   def bookmarked_segments
