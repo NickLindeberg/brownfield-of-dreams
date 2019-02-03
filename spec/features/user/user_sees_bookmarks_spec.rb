@@ -47,5 +47,20 @@ describe 'Rendering Bookmarked Segments' do
       expect(page).to_not have_content("#{@video_4.title}")
       expect(page).to_not have_css("#video-#{@video_4.id}")
     end
+    it 'links to tutorial path for video through video name' do
+      expect(page).to have_link("#{@video.title}", href: "/tutorials/#{@tutorial.id}?video_id=#{@video.id}")
+      click_link "#{@video.title}"
+      expect(current_url).to eq("http://www.example.com#{tutorial_path(@tutorial.id, video_id: @video.id)}")
+
+      visit dashboard_path
+      expect(page).to have_link("#{@video_2.title}", href: "/tutorials/#{@tutorial_2.id}?video_id=#{@video_2.id}")
+      click_link "#{@video_2.title}"
+      expect(current_url).to eq("http://www.example.com#{tutorial_path(@tutorial_2.id, video_id: @video_2.id)}")
+
+      visit dashboard_path
+      expect(page).to have_link("#{@video_3.title}", href: "/tutorials/#{@tutorial_2.id}?video_id=#{@video_3.id}")
+      click_link "#{@video_3.title}"
+      expect(current_url).to eq("http://www.example.com#{tutorial_path(@tutorial_2.id, video_id: @video_3.id)}")
+    end
   end
 end
