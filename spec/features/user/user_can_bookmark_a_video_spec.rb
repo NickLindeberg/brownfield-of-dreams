@@ -18,7 +18,7 @@ describe 'A registered user' do
   end
 
   it "can't add the same bookmark more than once" do
-    tutorial= create(:tutorial)
+    tutorial = create(:tutorial)
     video = create(:video, tutorial_id: tutorial.id)
     user = create(:user)
 
