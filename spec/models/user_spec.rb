@@ -77,7 +77,8 @@ RSpec.describe User, type: :model do
         Bookmark.create(user_id: user.id, tutorial_id: tutorial_2.id, video_id: video_3.id)
 
         user_bookmarks = user.bookmarked_segments
-
+        
+        expect(user_bookmarks.first.tut_id).to eq(tutorial_2.id)
         expect(user_bookmarks.first.tut_tile).to eq(tutorial_2.title)
         expect(user_bookmarks.first.tut_desc).to eq(tutorial_2.description)
         expect(user_bookmarks.first.tut_thumbnail).to eq(tutorial_2.thumbnail)
@@ -87,6 +88,7 @@ RSpec.describe User, type: :model do
         expect(user_bookmarks.first.id).to eq(video_3.id)
         expect(user_bookmarks.first.tutorial_id).to eq(video_3.tutorial_id)
 
+        expect(user_bookmarks.second.tut_id).to eq(tutorial_2.id)
         expect(user_bookmarks.second.tut_tile).to eq(tutorial_2.title)
         expect(user_bookmarks.second.tut_desc).to eq(tutorial_2.description)
         expect(user_bookmarks.second.tut_thumbnail).to eq(tutorial_2.thumbnail)
@@ -96,6 +98,7 @@ RSpec.describe User, type: :model do
         expect(user_bookmarks.second.id).to eq(video_2.id)
         expect(user_bookmarks.second.tutorial_id).to eq(video_2.tutorial_id)
 
+        expect(user_bookmarks.third.tut_id).to eq(tutorial.id)
         expect(user_bookmarks.third.tut_tile).to eq(tutorial.title)
         expect(user_bookmarks.third.tut_desc).to eq(tutorial.description)
         expect(user_bookmarks.third.tut_thumbnail).to eq(tutorial.thumbnail)
