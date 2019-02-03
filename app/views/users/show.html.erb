@@ -34,6 +34,12 @@
               <div class="github-user">
                 <%= link_to(f.login, f.html_url) %>
               </div>
+                <% if @facade.already_friends?(f.login) %>
+                <% elsif %>
+                  <% @facade.user_in_system?(f.login) %>
+                    <%= link_to 'Add Friend', "/users/#{current_user.id}/add_friend/#{f.login}", method: :post  %>
+                <% else %>
+                <% end %>
             <% end %>
           </div>
         <% end %>
@@ -44,6 +50,12 @@
               <div class="github-user">
                 <%= link_to(u.login, u.html_url) %>
               </div>
+                <% if @facade.already_friends?(u.login) %>
+                <% elsif %>
+                  <% @facade.user_in_system?(u.login) %>
+                    <%= link_to 'Add Friend', "/users/#{current_user.id}/add_friend/#{u.login}", method: :post  %>
+                <% else %>
+                <% end %>
             <% end %>
           </div>
         <% end %>
