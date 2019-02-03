@@ -8,9 +8,28 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
-    <h1>Bookmarked Segments</h1>
-  </section>
+    <% if @bookmarks %>
+    <section class="bookmarks">
+      <h1>Bookmarked Segments</h1>
+      <% @bookmarks.reduce(nil) do |past_tut_id, b| %>
+        <% unless b.tut_id == past_tut_id %>
+          <div class="bookmark">
+            <div class="tutorial" id="tutorial-<%= b.tut_id %>">
+              <h3><%= b.tut_title %></h3>
+              <p><%= b.tut_desc %></p>
+            </div>
+          </div>
+          <% past_tut_id = b.tut_id %>
+        <% end %>
+        <div class="bookmark">
+          <div class="video" id="video-<%= b.id %>">
+            <p>Segment: <%= b.title %></p>
+          </div>
+        </div>
+        <% past_tut_id %>
+      <% end %>
+    </section>
+    <% end %>
   <% if current_user.github_key %>
     <section class="github">
       <h1>Github</h1>
