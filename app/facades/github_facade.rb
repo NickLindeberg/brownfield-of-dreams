@@ -1,6 +1,7 @@
 class GithubFacade
-  def initialize(github_key)
+  def initialize(github_key, current_user)
     @github_key = github_key
+    @user = current_user
   end
 
   def owned_repos(num=5)
@@ -20,8 +21,16 @@ class GithubFacade
     generate_github_users(service.following)
   end
 
+  def already_friends?(handle)
+    @user.friends.include?(User.find_by(handle: handle))
+  end
+
+  def user_in_system?(handle)
+    u = User.find_by(handle: handle)
+  end
+
   def service
-    GithubService.new(@github_key)
+    x = GithubService.new(@github_key)
   end
 
   private

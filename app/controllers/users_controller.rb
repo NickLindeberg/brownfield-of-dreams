@@ -3,10 +3,10 @@ class UsersController < ApplicationController
 
   def show
     if current_user.github_key
-      facade = GithubFacade.new(current_user.github_key)
-      @repos = facade.owned_repos
-      @followers = facade.followers
-      @following = facade.following
+      @facade = GithubFacade.new(current_user.github_key, current_user)
+      @repos = @facade.owned_repos
+      @followers = @facade.followers
+      @following = @facade.following
     end
   end
 
