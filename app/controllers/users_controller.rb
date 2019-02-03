@@ -8,6 +8,7 @@ class UsersController < ApplicationController
       @followers = facade.followers
       @following = facade.following
     end
+    @bookmarks = current_user.bookmarked_segments if current_user.bookmarks
   end
 
   def new
