@@ -3,10 +3,16 @@
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <%= link_to "Connect to Github", github_login_path %>
+  <%= button_to "Send an Invite", new_invite_path, method: :get %>
   <h3>Account Details</h3>
   <ul>
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
+    <% if current_user.activated %>
+      <li>Status: Active</li>
+    <% else %>
+      <li>This account has not yet be activated. Please check your email</li>
+    <% end %>
   </ul>
     <% if @bookmarks %>
     <section class="bookmarks">
