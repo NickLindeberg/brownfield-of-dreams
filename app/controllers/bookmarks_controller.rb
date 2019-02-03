@@ -4,7 +4,7 @@ class BookmarksController < ApplicationController
 
   def create
     bookmark = Bookmark.new(bookmark_params)
-    if current_user.bookmarks.find_by(video_id: user_video.video_id)
+    if current_user.bookmarks.find_by(video_id: bookmark.video_id)
       flash[:error] = "Already in your bookmarks"
     elsif bookmark.save
       flash[:success] = "Bookmark added to your dashboard!"
