@@ -4,7 +4,6 @@ describe 'visitor sees a video show' do
   it 'vistor clicks on a tutorial title from the home page' do
     tutorial = create(:tutorial)
     video = create(:video, tutorial_id: tutorial.id)
-
     visit '/'
 
     click_on tutorial.title
@@ -38,5 +37,13 @@ describe 'visitor sees a video show' do
     visit tutorial_path(tutorial)
 
     expect(current_path).to eq(root_path)
+  end
+  it 'visitor does not see tutorial show if tutorial has no videos' do
+    tutorial = create(:tutorial, classroom: false)
+
+    visit tutorial_path(tutorial)
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("That tutorial does not currently have videos")
   end
 end
