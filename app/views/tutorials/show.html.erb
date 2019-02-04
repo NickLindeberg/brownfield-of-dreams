@@ -17,7 +17,7 @@
     <h3><%= @facade.current_video.title %></h3>
     <div class="bookmarks-btn">
       <% if current_user %>
-      <%= button_to "Bookmark", user_videos_path(video_id: @facade.current_video.id, user_id: current_user.id), method: :post, class: "btn btn-outline mb1 teal" %>
+      <%= button_to "Bookmark", bookmarks_path(tutorial_id: @facade.id, video_id: @facade.current_video.id, user_id: current_user.id), method: :post, class: "btn btn-outline mb1 teal" %>
       <% else %>
         <button class="btn btn-outline mb1 teal" onclick="tutorialBookmark()">Bookmark</button>
       <% end %>

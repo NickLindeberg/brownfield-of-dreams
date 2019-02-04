@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_03_195917) do
+ActiveRecord::Schema.define(version: 2019_02_02_231049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2019_02_03_195917) do
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
     t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
     t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+  
+    create_table "bookmarks", force: :cascade do |t|
+    t.bigint "tutorial_id"
+    t.bigint "video_id"
+    t.bigint "user_id"
+    t.index ["tutorial_id"], name: "index_bookmarks_on_tutorial_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+    t.index ["video_id"], name: "index_bookmarks_on_video_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -93,6 +102,9 @@ ActiveRecord::Schema.define(version: 2019_02_03_195917) do
     t.index ["tutorial_id"], name: "index_videos_on_tutorial_id"
   end
 
+  add_foreign_key "bookmarks", "tutorials"
+  add_foreign_key "bookmarks", "users"
+  add_foreign_key "bookmarks", "videos"
   add_foreign_key "user_videos", "users"
   add_foreign_key "user_videos", "videos"
 end

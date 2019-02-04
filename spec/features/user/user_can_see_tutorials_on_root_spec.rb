@@ -4,6 +4,7 @@ describe 'user sees all tutorials' do
   before(:each) do
     @tutorial_1 = create(:tutorial, classroom: false)
     @tutorial_2 = create(:tutorial, classroom: true)
+    @tutorial_3 = create(:tutorial, classroom: false)
     @video_1 = create(:video, tutorial_id: @tutorial_1.id)
     @video_2 = create(:video, tutorial_id: @tutorial_2.id)
 
@@ -28,5 +29,11 @@ describe 'user sees all tutorials' do
     click_on @tutorial_1.title
 
     expect(current_path).to eq(tutorial_path(@tutorial_1))
+  end
+  it 'user does not see tutorial show if tutorial has no videos' do
+    visit tutorial_path(@tutorial_3)
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("That tutorial does not currently have videos")
   end
 end
