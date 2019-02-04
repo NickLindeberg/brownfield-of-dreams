@@ -18,6 +18,12 @@ class Admin::TutorialsController < Admin::BaseController
     redirect_to edit_admin_tutorial_path(tutorial)
   end
 
+  def destroy
+    Tutorial.find(params[:id]).destroy
+    flash[:success] = "Tutorial and videos have been deleted"
+    redirect_to admin_dashboard_path
+  end
+
   private
   def tutorial_params
     params.require(:tutorial).permit(:tag_list)
