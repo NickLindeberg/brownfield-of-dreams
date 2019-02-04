@@ -26,11 +26,11 @@ class GithubFacade
   end
 
   def user_in_system?(handle)
-    u = User.find_by(handle: handle)
+    User.find_by(handle: handle)
   end
 
   def service
-    x = GithubService.new(@github_key)
+    GithubService.new(@github_key)
   end
 
   private

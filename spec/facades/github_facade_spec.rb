@@ -48,5 +48,32 @@ describe GithubFacade, type: :model do
         expect(following.first).to be_a(GithubUser)
       end
     end
+
+    context '#already_friends?' do
+      it 'shows a user that is connected on github and is in our system' do
+        user = create(:user)
+        user_2 = create(:user, handle: "iandouglas")
+        friendship = Friendship.create(user_id: user.id, friend_id: user_2.id)
+        json_response = File.open('./spec/fixtures/github_user_following.json')
+        stub_request(:get, "https://api.github.com/user/following").to_return(status: 200, body: json_response)
+        github_facade = GithubFacade.new(ENV["GITHUB_API_KEY"], user)
+
+        friends = github_facade.already_friends?(user_2.handle)
+        expect(friends).to be(true)
+      end
+    end
+
+    context '#user_in_system?' do
+      it 'shows a user that is connected on github and is in our system' do
+        user = create(:user)
+        user_2 = create(:user, handle: "iandouglas")
+        json_response = File.open('./spec/fixtures/github_user_following.json')
+        stub_request(:get, "https://api.github.com/user/following").to_return(status: 200, body: json_response)
+        github_facade = GithubFacade.new(ENV["GITHUB_API_KEY"], user)
+
+        user = github_facade.user_in_system?(user_2.handle)
+        expect(user.id).to be(user_2.id)
+      end
+    end
   end
 end
