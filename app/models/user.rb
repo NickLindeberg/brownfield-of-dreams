@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :bookmarks
   has_many :tutorials, through: :bookmarks
   has_many :videos, through: :bookmarks
+  has_many :friendships
+  has_many :friends, through: :friendships
 
   validates :email, uniqueness: true, presence: true
   validates :password, presence: true, if: :password
