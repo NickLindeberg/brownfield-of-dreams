@@ -68,9 +68,6 @@
     <%= @facade.current_video.description.truncate(50) %>...
     <%= link_to "More", "#", "data-action" => "click->tutorials#showDescription", id: @facade.current_video.id, class: "show-link"%>
   </p>
-  $(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
 </div>
 
 </main>
