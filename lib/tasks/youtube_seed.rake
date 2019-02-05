@@ -38,3 +38,11 @@ namespace :import do
     end
   end
 end
+
+desc:"increment video position"
+task :video_position do
+  videos = Video.all
+  videos.each_with_index do |v, i|
+    v.position = i
+  end
+end
