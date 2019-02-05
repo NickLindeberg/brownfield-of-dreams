@@ -20,7 +20,7 @@
       <% @bookmarks.reduce(nil) do |past_tut_id, b| %>
         <% unless b.tut_id == past_tut_id %>
           <div class="bookmark">
-            <div class="tutorial" id="tutorial-<%= b.tut_id %>">
+            <div class="tutorial-dash" id="tutorial-<%= b.tut_id %>">
               <h3><%= b.tut_title %></h3>
               <p><%= b.tut_desc %></p>
             </div>
@@ -28,7 +28,7 @@
           <% past_tut_id = b.tut_id %>
         <% end %>
         <div class="bookmark">
-          <div class="video" id="video-<%= b.id %>">
+          <div class="tutorial-video" id="video-<%= b.id %>">
             <p>Segment: <%= link_to b.title, tutorial_path(b.tut_id, video_id: b.id) %></p>
           </div>
         </div>
@@ -47,37 +47,54 @@
           </div>
         <% end %>
         <% if @followers %>
+        <table>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
           <div class="followers">
             <h2>Your Followers</h2>
             <% @followers.each do |f| %>
+            <tr>
               <div class="github-user">
-                <%= link_to(f.login, f.html_url) %>
+                <td><%= link_to(f.login, f.html_url) %></td>
               </div>
-                <% if @facade.already_friends?(f.login) %>
-                You are friends!
-                <% elsif %>
-                  <% @facade.user_in_system?(f.login) %>
-                    <%= link_to 'Add Friend', "/users/#{current_user.id}/add_friend/#{f.login}", method: :post  %>
+                <td><% if @facade.already_friends?(f.login) %>
+                  You are friends!
+                <% elsif @facade.user_in_system?(f.login) %>
+                  <%= button_to 'Add Friend', "/users/#{current_user.id}/add_friend/#{f.login}", class: "smbtn btn-primary mb1 bg-teal", method: :post  %>
                 <% else %>
                 <% end %>
+              </td>
+            </tr>
             <% end %>
           </div>
         <% end %>
         <% if @following %>
+        <table>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
           <div class="following">
             <h2>Who You Follow</h2>
             <% @following.each do |u| %>
+            <tr>
               <div class="github-user">
-                <%= link_to(u.login, u.html_url) %>
+                <td><%= link_to(u.login, u.html_url) %></td>
               </div>
-                <% if @facade.already_friends?(u.login) %>
-                You are friends!
+                <td><% if @facade.already_friends?(u.login) %>
+                  You are friends!
                 <% elsif @facade.user_in_system?(u.login) %>
-                    <%= button_to 'Add Friend', "/users/#{current_user.id}/add_friend/#{u.login}", method: :post  %>
+                  <%= button_to 'Add Friend', "/users/#{current_user.id}/add_friend/#{u.login}", class: "smbtn btn-primary bg-teal", method: :post %>
                 <% else %>
                 <% end %>
+                </td>
+            </tr>
             <% end %>
           </div>
+        </table>
+
         <% end %>
       </div>
     </section>

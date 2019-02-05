@@ -14,9 +14,10 @@
     <tr class="admin-tutorial-card">
       <td><%= link_to tutorial.title, tutorial_path(tutorial) %></td>
       <td class="tutorial-links" id="tutorial-<%= tutorial.id %>">
-        <%= link_to "Edit", edit_admin_tutorial_path(tutorial) %> |
-        <%= link_to 'Delete', admin_tutorial_path(tutorial),
+        <%= link_to "Edit", edit_admin_tutorial_path(tutorial), class: "smbtn btn-primary bg-teal" %>
+        <%= button_to 'Delete', admin_tutorial_path(tutorial),
                                method: :delete,
+                               class: "smbtn btn-primary bg-teal",
                                data: { confirm: 'Are you sure?' } %>
       </td>
     </tr>
