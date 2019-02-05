@@ -17,7 +17,7 @@ feature "Admin can delete a tutorial" do
   it 'clicks delete tutorial on admin dashboard' do
     visit admin_dashboard_path
     expect(page).to have_css(".tutorial-links", count: 2)
-    save_and_open_page
+    
     within "#tutorial-#{@tut_1.id}" do
       click_button "Delete"
     end
