@@ -17,9 +17,9 @@ feature "Admin can delete a tutorial" do
   it 'clicks delete tutorial on admin dashboard' do
     visit admin_dashboard_path
     expect(page).to have_css(".tutorial-links", count: 2)
-
+    
     within "#tutorial-#{@tut_1.id}" do
-      click_link "Delete"
+      click_button "Delete"
     end
 
     expect(current_path).to eq(admin_dashboard_path)
@@ -27,7 +27,7 @@ feature "Admin can delete a tutorial" do
     expect(page).to have_css(".tutorial-links", count: 1)
 
     within "#tutorial-#{@tut_2.id}" do
-      click_link "Delete"
+      click_button "Delete"
     end
 
     expect(page).to_not have_css(".tutorial-links")
@@ -39,7 +39,7 @@ feature "Admin can delete a tutorial" do
     expect(Video.all.count).to eq(5)
 
     within "#tutorial-#{@tut_2.id}" do
-      click_link "Delete"
+      click_button "Delete"
     end
 
     expect(Video.all.count).to eq(3)
