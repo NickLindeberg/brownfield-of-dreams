@@ -97,24 +97,20 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-  font-size: 200%;
 }
 
 h2 {
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-  font-size: 48px;
 }
 
 h3 {
   font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
 }
 
 h4 {
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
-  font-size: 125%;
 }
 
 .videos {
@@ -278,3 +274,6 @@ div.title-bookmark {
   .m {font-size: 1.2em; }
 }
 
+table {
+  width: 50%;
+}
