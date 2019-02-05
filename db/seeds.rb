@@ -42,7 +42,7 @@ mod_1_tutorial_data = {
   "description"=>"Videos related to Mod 1.",
   "thumbnail"=>"https://i.ytimg.com/vi/tZDBWXZzLPk/hqdefault.jpg",
   "playlist_id"=>"PL1Y67f0xPzdNsXqiJs1s4NlpI6ZMNdMsb",
-  "classroom"=>false,
+  "classroom"=>true,
 }
 
 m1_tutorial = Tutorial.create! mod_1_tutorial_data
@@ -115,6 +115,19 @@ m3_tutorial.videos.create!({
   "position"=>6
 })
 
-User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
-User.create!(email: 'user@example.com', first_name: 'user', last_name: 'userson', password: "password", role: :default, github_key: ENV["GITHUB_API_KEY"])
-User.create!(email: 'nick@nicklindycodes.com', first_name: 'Nick', last_name: 'Lindy', password: "123", role: :default, handle: "Mackenzie-Frey")
+testing_tutorial_data = {
+  "title"=>"Back End Engineering - Testing",
+  "description"=>"Videos for Testing.",
+  "thumbnail"=>"https://bento.cdn.pbs.org/hostedbento-prod/filer_public/PBS%20Parents%20Bob%20the%20Builder/episodes/episodes%20RGB%20Converted%20images/BTB_1001-Sky-High-Scoop-2_RGB-400px.jpg",
+  "playlist_id"=>"PL1Y67f0xPzdN6C-LPuTQ5yzlBoz2joWa5",
+  "classroom"=>false,
+}
+testing_tutorial = Tutorial.create! testing_tutorial_data
+
+admin = User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
+li_user = User.create!(email: 'user@example.com', first_name: 'user', last_name: 'userson', password: "password", role: :default, github_key: ENV["GITHUB_API_KEY"])
+not_li_user2 = User.create!(email: 'user2@example.com', first_name: 'Mackenzie', last_name: 'Frey', password: "123", role: :default, handle: "Mackenzie-Frey")
+not_li_user3 = User.create!(email: 'user3@example.com', first_name: 'Silver', last_name: 'McSilverson', password: "123", role: :default, handle: "SiCuellar")
+not_li_user4 = User.create!(email: 'user4@example.com', first_name: 'User', last_name: 'Four', password: "123", role: :default)
+
+Friendship.create(user_id: li_user.id, friend_id: not_li_user2.id)
