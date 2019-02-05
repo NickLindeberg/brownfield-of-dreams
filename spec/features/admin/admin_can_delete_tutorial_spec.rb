@@ -23,7 +23,7 @@ feature "Admin can delete a tutorial" do
     end
 
     expect(current_path).to eq(admin_dashboard_path)
-    expect(page).to have_content("tutorial and videos have been deleted")
+    expect(page).to have_content("Tutorial and videos have been deleted")
     expect(page).to have_css(".tutorial-links", count: 1)
 
     within "#tutorial-#{@tut_2.id}" do
@@ -31,14 +31,14 @@ feature "Admin can delete a tutorial" do
     end
 
     expect(page).to_not have_css(".tutorial-links")
-    expect(page).to have_content("tutorial and videos have been deleted")
+    expect(page).to have_content("Tutorial and videos have been deleted")
   end
   it 'destroys all videos for the destroyed tutorial' do
     visit admin_dashboard_path
 
     expect(Video.all.count).to eq(5)
 
-    within "tutorial-#{@tut_2.id}" do
+    within "#tutorial-#{@tut_2.id}" do
       click_link "Delete"
     end
 
