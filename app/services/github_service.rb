@@ -1,4 +1,6 @@
 class GithubService
+  attr_reader :github_key
+
   def initialize(github_key)
     @github_key = github_key
   end
@@ -6,6 +8,7 @@ class GithubService
   def self.send_invite(from_user, github_handle)
     user_info = self.get_user_info(github_handle)
     return false unless user_info[:email]
+    require "pry"; binding.pry
     GithubInviterMailer.invite(from_user, GithubUser.new(user_info)).deliver_now
     true
   end
@@ -32,11 +35,19 @@ class GithubService
   end
 
   def self.get_json(url)
-    response = unauthenticated_conn.get(url)
-    JSON.parse(response.body, symbolize_names: true)
+    response = unauthenticated_conn.get(url) do |req|
+      req.params['access_token'] = self.get_token
+    end
+    x = JSON.parse(response.body, symbolize_names: true)
+    require "pry"; binding.pry
   end
 
   private
+
+  def self.get_token
+    require "pry"; binding.pry
+    @github_key.split(" ")[1]
+  end
 
   def authenticated_conn
     Faraday.new(:url => "https://api.github.com") do |faraday|
