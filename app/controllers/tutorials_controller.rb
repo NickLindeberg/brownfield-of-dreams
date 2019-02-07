@@ -6,7 +6,6 @@ class TutorialsController < ApplicationController
         flash[:error] = "That tutorial does not currently have videos"
         redirect_to root_path
       end
-    else current_user.admin?
     end
     redirect_to root_path unless tutorial.classroom == false || current_user
     @facade = TutorialFacade.new(tutorial, params[:video_id])
