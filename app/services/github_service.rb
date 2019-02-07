@@ -6,15 +6,14 @@ class GithubService
   end
 
   def self.send_invite(from_user, github_handle)
-    user_info = self.get_user_info(github_handle)
+    user_info = self.get_user_info(github_handle, from_user.github_key)
     return false unless user_info[:email]
-    require "pry"; binding.pry
     GithubInviterMailer.invite(from_user, GithubUser.new(user_info)).deliver_now
     true
   end
 
-  def self.get_user_info(github_handle)
-    get_json("/users/#{github_handle}")
+  def self.get_user_info(github_handle, github_key)
+    get_json("/users/#{github_handle}", github_key)
   end
 
   def owned_repos
@@ -34,25 +33,19 @@ class GithubService
     JSON.parse(response.body, symbolize_names: true)
   end
 
-  def self.get_json(url)
-    response = unauthenticated_conn.get(url) do |req|
-      req.params['access_token'] = self.get_token
+  def self.get_json(path, github_key)
+    response = unauthenticated_conn.get do |req|
+      req.url path, :access_token => github_key
     end
-    x = JSON.parse(response.body, symbolize_names: true)
-    require "pry"; binding.pry
+    JSON.parse(response.body, symbolize_names: true)
   end
 
   private
 
-  def self.get_token
-    require "pry"; binding.pry
-    @github_key.split(" ")[1]
-  end
-
   def authenticated_conn
     Faraday.new(:url => "https://api.github.com") do |faraday|
      faraday.headers["Accept"] = "application/vnd.github.v3+json"
-     faraday.headers["Authorization"] = @github_key
+     faraday.headers["Authorization"] = "token #{@github_key}"
      faraday.adapter Faraday.default_adapter
     end
   end
