@@ -126,7 +126,7 @@ testing_tutorial = Tutorial.create! testing_tutorial_data
 
 admin = User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
 panda = User.create!(email: "panda@panda.com", first_name: "Panda", last_name: "Panda", password: "panda", role: :default)
-li_user = User.create!(email: 'user@example.com', first_name: 'user', last_name: 'userson', password: "password", role: :default, github_key: ENV["GITHUB_API_KEY"])
+li_user = User.create!(email: 'user@example.com', first_name: 'user', last_name: 'userson', password: "password", role: :default)
 not_li_user2 = User.create!(email: 'user2@example.com', first_name: 'Mackenzie', last_name: 'Frey', password: "123", role: :default, handle: "Mackenzie-Frey")
 not_li_user3 = User.create!(email: 'user3@example.com', first_name: 'Silver', last_name: 'McSilverson', password: "123", role: :default, handle: "SiCuellar")
 not_li_user4 = User.create!(email: 'user4@example.com', first_name: 'User', last_name: 'Four', password: "123", role: :default)
