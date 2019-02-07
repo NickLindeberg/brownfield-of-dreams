@@ -10,7 +10,7 @@ describe GithubService, type: :model do
     context '.send_invite' do
       it "sends invite if user has email and returns true for sent status" do
         json_response = File.open('./spec/fixtures/github_user_email.json')
-        stub_request(:get, "https://api.github.com/users/stoic-plus").to_return(status: 200, body: json_response)
+        stub_request(:get, "https://api.github.com/users/stoic-plus?access_token").to_return(status: 200, body: json_response)
         user = create(:user, first_name: 'Jon', last_name: 'Doe')
 
         sent = GithubService.send_invite(user, 'stoic-plus')
@@ -23,7 +23,7 @@ describe GithubService, type: :model do
       end
       it 'returns false if user does not have email associated with github' do
         json_response = File.open('./spec/fixtures/github_user_no_email.json')
-        stub_request(:get, "https://api.github.com/users/NickLindeberg").to_return(status: 200, body: json_response)
+        stub_request(:get, "https://api.github.com/users/NickLindeberg?access_token").to_return(status: 200, body: json_response)
 
         user = create(:user, first_name: 'Jon', last_name: 'Doe')
         sent = GithubService.send_invite(user, 'NickLindeberg')

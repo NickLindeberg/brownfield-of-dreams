@@ -5,10 +5,10 @@ describe 'Email Invites' do
     context "clicking 'Send an Invite'" do
       before :each do
         json_response = File.open('./spec/fixtures/github_user_email.json')
-        stub_request(:get, "https://api.github.com/users/stoic-plus").to_return(status: 200, body: json_response)
+        stub_request(:get, "https://api.github.com/users/stoic-plus?access_token").to_return(status: 200, body: json_response)
 
         json_response = File.open('./spec/fixtures/github_user_no_email.json')
-        stub_request(:get, "https://api.github.com/users/NickLindeberg").to_return(status: 200, body: json_response)
+        stub_request(:get, "https://api.github.com/users/NickLindeberg?access_token").to_return(status: 200, body: json_response)
 
         @user = create(:user, first_name: 'Jon', last_name: 'Doe')
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
