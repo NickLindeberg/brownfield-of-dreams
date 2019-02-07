@@ -38,12 +38,11 @@ describe 'Rendering Bookmarked Segments' do
       expect(all('.bookmark')[3]).to have_css("#tutorial-#{@tutorial.id}")
       expect(all('.bookmark')[4]).to have_css("#video-#{@video.id}")
 
-      expect(all('.tutorial')[0]).to have_content("#{@tutorial_2.title}")
-      expect(all('.tutorial')[1]).to have_content("#{@tutorial.title}")
-      expect(all('.video')[0]).to have_content("Segment: #{@video_3.title}")
-      expect(all('.video')[1]).to have_content("Segment: #{@video_2.title}")
-      expect(all('.video')[2]).to have_content("Segment: #{@video.title}")
-
+      expect(all('.tutorial-dash')[0]).to have_content("#{@tutorial_2.title}")
+      expect(all('.tutorial-dash')[1]).to have_content("#{@tutorial.title}")
+      expect(all('.tutorial-video')[0]).to have_content("Segment: #{@video_3.title}")
+      expect(all('.tutorial-video')[1]).to have_content("Segment: #{@video_2.title}")
+      expect(all('.tutorial-video')[2]).to have_content("Segment: #{@video.title}")
       expect(page).to_not have_content("#{@video_4.title}")
       expect(page).to_not have_css("#video-#{@video_4.id}")
     end
