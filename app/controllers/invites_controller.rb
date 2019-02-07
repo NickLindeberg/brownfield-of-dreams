@@ -1,6 +1,5 @@
 class InvitesController < ApplicationController
   def new
-    require "pry"; binding.pry
   end
 
   def create
