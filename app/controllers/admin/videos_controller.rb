@@ -1,11 +1,12 @@
 class Admin::VideosController < Admin::BaseController
   def edit
-    @video = Video.find(params[:video_id])
+    @video = Video.find(params[:id])
   end
 
   def update
     video = Video.find(params[:id])
-    video.update(video_params)
+    video.update(new_video_params)
+    redirect_to admin_dashboard_path
   end
 
   def create
@@ -25,9 +26,9 @@ class Admin::VideosController < Admin::BaseController
   end
 
   private
-    def video_params
-      params.permit(:position)
-    end
+    # def video_params
+    #   params.permit(:position)
+    # end
 
     def new_video_params
       params.require(:video).permit(:title, :description, :video_id, :thumbnail)
