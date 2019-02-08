@@ -1,5 +1,9 @@
 # Brownfield Of Dreams
 
+# Module 3 Paired Project
+* [Nick](https://github.com/NickLindeberg)
+* [Ricardo](https://github.com/stoic-plus)
+
 This is the base repo for a brownfield project used at Turing for Backend Mod 3.
 
 Project Spec and Evaluation Rubric: https://github.com/turingschool-examples/brownfield-of-dreams
@@ -61,6 +65,7 @@ $ bundle exec rspec
 * [vcr](https://github.com/vcr/vcr)
 * [selenium-webdriver](https://www.seleniumhq.org/docs/03_webdriver.jsp)
 * [chromedriver-helper](http://chromedriver.chromium.org/)
+* [Capybara Email](https://github.com/DavyJonesLocker/capybara-email)
 
 ### Versions
 * Ruby 2.4.1
