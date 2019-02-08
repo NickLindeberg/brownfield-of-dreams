@@ -11,7 +11,7 @@ RSpec.describe GithubInviterMailer, type: :mailer do
       open_email('smtp://127.0.0.1:1025')
       expect(current_email).to have_content("Hello stoic-plus,")
       expect(current_email).to have_content("Jon, Doe has invited you to join Brownfield of Dreams. You can create an account here")
-      expect(current_email).to have_link("here", href: "http://localhost:3000/register")
+      expect(current_email).to have_link("here", href: "https://lit-garden-46076.herokuapp.com/register")
     end
   end
 end

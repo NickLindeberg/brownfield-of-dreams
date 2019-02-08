@@ -19,7 +19,7 @@ describe GithubService, type: :model do
         open_email('ricardoledesmadev@gmail.com')
         expect(current_email).to have_content("Hello stoic-plus,")
         expect(current_email).to have_content("Jon, Doe has invited you to join Brownfield of Dreams. You can create an account here")
-        expect(current_email).to have_link("here", href: "http://localhost:3000/register")
+        expect(current_email).to have_link("here", href: "https://lit-garden-46076.herokuapp.com/register")
       end
       it 'returns false if user does not have email associated with github' do
         json_response = File.open('./spec/fixtures/github_user_no_email.json')
